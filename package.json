@@ -1,0 +1,11 @@
+{
+  "name": "ixigo",
+  "version": "1.0.0",
+  "description": "airline page",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "touchps",
+  "license": "ISC"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "ixigo",
+  "version": "0.0.0",
+  "authors": [
+    "touchps <puneet.mir@gmail.com>"
+  ],
+  "description": "airline ui files",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
