@@ -4,8 +4,20 @@
   "description": "airline page",
   "main": "app.js",
   "scripts": {
-    "test": "test"
+    "lintm": "node_modules/jslint/bin/jslint.js 'models/*js'",
+    "lintr": "node_modules/jslint/bin/jslint.js 'routes/*js'",
+    "lintc": "node_modules/jslint/bin/jslint.js 'config/*js'"
   },
   "author": "touchps",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.12.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.3.4",
+    "express": "^4.12.3",
+    "express-session": "^1.11.1",
+    "jade": "^1.9.2",
+    "jslint": "^0.9.0-pre006",
+    "stylus": "^0.50.0"
+  }
 }
