@@ -10,7 +10,7 @@ var express = require('express'),
 
 
 
-var server_port =  3000;
+var server_port =  process.env.PORT || 5000;
 var server_ip_address =  '127.0.0.1';
 
 
