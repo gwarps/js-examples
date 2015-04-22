@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.4",
-    "seiyria-bootstrap-slider": "~4.8.1"
+    "seiyria-bootstrap-slider": "~4.8.1",
+    "knockout": "~3.3.0"
   }
 }
