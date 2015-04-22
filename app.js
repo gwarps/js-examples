@@ -24,8 +24,10 @@ app.set('view engine', 'jade');
 app.locals.pretty = true;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(require('stylus').middleware(path.join(__dirname, 'bower_components')));
-app.use(express.static(path.join(__dirname, 'bower_components')));
+//app.use(require('stylus').middleware(path.join(__dirname, 'bower_components')));
+app.use("/public", express.static(path.join(__dirname, 'bower_components')));
+//app.use(require('stylus').middleware(path.join(__dirname, 'custom_ui')));
+app.use("/custom-ui", express.static(path.join(__dirname, 'customui')));
 
 app.use(cookieParser('secret'));
 
