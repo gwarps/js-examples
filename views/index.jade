@@ -19,8 +19,11 @@ block main_content
                         a(data-toggle="collapse", href="#collapseTwo", aria-expanded="true", aria-controls="collapseTwo")
                            | Airlines
                   #collapseTwo.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingTwo")
-                     .panel-body
-                        | Anim 
+                     .panel-body(data-bind="foreach: airlineArray")
+                        .checkbox
+                           label
+                              input(type="checkbox", value="", data-bind="checked: airlineChecked, data-airlineCode: airlineCode")
+                              span(data-bind="text: airlineMap[airlineCode]")
                .panel.panel-default
                   #headingThree.panel-heading(role="tab")
                      h4.panel-title
@@ -52,3 +55,7 @@ block external_javascript
       $(document).ready(function() {
          $("input#sld1").slider();
       });
+
+      var pm = new pageModel(airlineMap, airportMap, flightsData);
+      ko.applyBindings(pm);
+      console.log(pm);
