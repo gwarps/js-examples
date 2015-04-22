@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "airline page",
   "main": "app.js",
+  "engines": {
+    "iojs": "1.7.x"
+  },
   "scripts": {
     "lintm": "node_modules/jslint/bin/jslint.js 'models/*js'",
     "lintr": "node_modules/jslint/bin/jslint.js 'routes/*js'",
     "lintc": "node_modules/jslint/bin/jslint.js 'config/*js'",
+    "nm": "nodemon app.js -w . -e js,jade,css,html,json -V4",
     "start": "node app.js",
     "postinstall": "bower install"
   },
