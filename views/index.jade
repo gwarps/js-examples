@@ -3,7 +3,52 @@ extends ../layouts/basic
 block main_content
    div(class="container")
       div(class="row")
-         div(class="col-md-3") 
-            h1 Side content
+         div(class="col-md-3")
+            #accordion.panel-group(role='tablist', aria-multiselectable='true')
+               .panel.panel-default
+                  #headingOne.panel-heading(role="tab")
+                     h4.panel-title
+                        a(data-toggle="collapse", data-parent="#accordion", href="#collapseOne", aria-expanded="true", aria-controls="collapseOne")
+                           | Price
+                  #collapseOne.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingOne")
+                     .panel-body
+                        | Anim 
+               .panel.panel-default
+                  #headingTwo.panel-heading(role="tab")
+                     h4.panel-title
+                        a(data-toggle="collapse", data-parent="#accordion", href="#collapseTwo", aria-expanded="true", aria-controls="collapseTwo")
+                           | Airlines
+                  #collapseTwo.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingTwo")
+                     .panel-body
+                        | Anim 
+               .panel.panel-default
+                  #headingThree.panel-heading(role="tab")
+                     h4.panel-title
+                        a(data-toggle="collapse", data-parent="#accordion", href="#collapseThree", aria-expanded="true", aria-controls="collapseThree")
+                           | Departure Time
+                  #collapseThree.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingThree")
+                     .panel-body
+                        | Anim 
+               .panel.panel-default
+                  #headingFour.panel-heading(role="tab")
+                     h4.panel-title
+                        a(data-toggle="collapse", data-parent="#accordion", href="#collapseFour", aria-expanded="true", aria-controls="collapseFour")
+                           | Duration
+                  #collapseFour.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingFour")
+                     .panel-body
+                        | Anim 
+
+                   
+               //end of panel default 1
+            //end of accordion panel
+            //input(id="sld1", type="text")
+         //end of sidebar div 
          div(class="col-md-9") 
             h2 Main Content
+      //end of row div        
+
+block external_javascript
+   script(type="text/javascript").
+      $(document).ready(function() {
+         $("input#sld1").slider();
+      });
