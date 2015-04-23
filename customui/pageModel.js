@@ -2,7 +2,7 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
    var self = this;
    self.airlineMap = airlineMap;
    self.airportMap = airportMap;
-
+   //self.minPrice = Math.max.apply(Math, flightsData.map(function
    self.airlineArray = ko.observableArray(checkMap(airlineMap));
 }
 
@@ -20,4 +20,11 @@ function checkMap(airlineMap) {
       }
    }
    return cmap;
+}
+
+function getRangeValues(flightsData) {
+   var rangeValues = {};
+   for (var flight in flightsData) {
+      
+   }
 } 
