@@ -74,8 +74,12 @@ block main_content
                   tbody(data-bind="foreach: flightsData")
                      tr
                         td 
-                           //span(data-bind="text: airlineCode")
-                           img(data-bind="attr: {src: '/custom-ui/images/' + airlineCode + '.png'}")
+                           div
+                              div
+                                 img(data-bind="attr: {src: '/custom-ui/images/' + airlineCode + '.png'}")
+                              div
+                                 span.label.label.label-flight(data-bind="text: airlineMap[airlineCode]")
+                           //end of image div
                         td() Data
                         td() Data
                         td() Data
