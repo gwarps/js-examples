@@ -12,7 +12,7 @@ block main_content
                            | Price
                   #collapseOne.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingOne")
                      .panel-body()
-                        input.slider.form-control(id="price", type="text", data-bind="sliderValue: {value:[minPrice, maxPrice]}")
+                        input.slider.form-control(id="price", type="text", data-bind="sliderValue: {value:[minPrice, maxPrice]}", data-slider-tooltip="hide")
                         div.panel
                            span.label.label-default.pull-left(data-bind="text: minPrice") 
                            span.label.label-default.pull-right(data-bind="text: maxPrice")
@@ -35,10 +35,10 @@ block main_content
                            | Departure Time
                   #collapseThree.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingThree")
                      .panel-body
-                        input.slider.form-control(id="time", type="text", data-bind="sliderValue: {value: [minDepartureTime, maxDepartureTime]}")
+                        input.slider.form-control(id="time", type="text", data-bind="sliderValue: {value: [minDepartureTime, maxDepartureTime]}", data-slider-tooltip="hide")
                         div.panel
-                           span.label.label-default.pull-left(data-bind="text: minDepartureTime")
-                           span.label.label-default.pull-right
+                           span.label.label-default.pull-left(data-bind="text: moment(minDepartureTime()).format('HH:mm')")
+                           span.label.label-default.pull-right(data-bind="text: moment(maxDepartureTime()).format('HH:mm')")
                               | High
                .panel.panel-default
                   #headingFour.panel-heading(role="tab")
@@ -47,12 +47,10 @@ block main_content
                            | Duration
                   #collapseFour.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingFour")
                      .panel-body
-                        input(id="duration", data-slider-id="durationSlider", type="text")
+                        input(id="duration", data-slider-id="durationSlider", type="text", data-bind="sliderValue: {value: [minDuration, maxDuration]}", data-slider-tooltip="hide")
                         div.panel
-                           span.label.label-default.pull-left
-                              | Low
-                           span.label.label-default.pull-right
-                              | High
+                           span.label.label-default.pull-left(data-bind="text: Math.floor(moment.duration(minDuration(), 'milliseconds').asMinutes()) + ' Minutes'")
+                           span.label.label-default.pull-right(data-bind="text: Math.floor(moment.duration(maxDuration(), 'milliseconds').asMinutes()) + ' Minutes'")
 
                    
                //end of panel default 1
@@ -74,5 +72,8 @@ block external_javascript
       $("input#time").slider({min: pm.minDepartureTime(), 
                               max: pm.maxDepartureTime(), 
                               range: true});
+      $("input#duration").slider({min: pm.minDuration(), 
+                                  max: pm.maxDuration(),
+                                  range: true});
       ko.applyBindings(pm);
       console.log(pm);

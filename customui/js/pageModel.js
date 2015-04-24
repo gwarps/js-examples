@@ -13,7 +13,6 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
       return o.price;
    })));
 
-   self.medPrice = ko.observable(2);
 
    self.minDepartureTime = ko.observable(Math.min.apply(Math, flightsData.map(function(o) {
       return o.takeoffTime;
