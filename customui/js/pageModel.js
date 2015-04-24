@@ -1,14 +1,20 @@
+appendDuration(flightsData);
+
 var pageModel = function(airlineMap, airportMap, flightsData) {
    var self = this;
    self.airlineMap = airlineMap;
    self.airportMap = airportMap;
+   self.flightsData = flightsData;
+
    self.minPrice = ko.observable(Math.min.apply(Math, flightsData.map(function(o) {
       return o.price;
    })));
    self.maxPrice = ko.observable(Math.max.apply(Math, flightsData.map(function(o) {
       return o.price;
    })));
-   
+
+   self.medPrice = ko.observable(2);
+
    self.minDepartureTime = ko.observable(Math.min.apply(Math, flightsData.map(function(o) {
       return o.takeoffTime;
    })));
@@ -16,8 +22,17 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
       return o.takeoffTime;
    })));
 
+   self.minDuration = ko.observable(Math.min.apply(Math, flightsData.map(function(o) {
+      return o.duration;
+   })));
+   self.maxDuration = ko.observable(Math.max.apply(Math, flightsData.map(function(o) {
+      return o.duration;
+   })));
+
    self.airlineArray = ko.observableArray(checkMap(airlineMap));
-}
+
+};
+
 
 var airlineModel = function(code, check) {
    var self = this;
@@ -35,11 +50,9 @@ function checkMap(airlineMap) {
    return cmap;
 }
 
-function appendDuration(
 
-function getRangeValues(flightsData) {
-   var rangeValues = {};
-   for (var flight in flightsData) {
-      
-   }
+function appendDuration(flightsData) {
+   flightsData.forEach(function(flight) {
+      flight.duration = flight.landingTime - flight.takeoffTime;
+   });
 } 
