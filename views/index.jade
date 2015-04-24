@@ -13,10 +13,14 @@ block main_content
                   #collapseOne.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingOne")
                      .panel-body()
                         input.slider.form-control(id="price", type="text", data-bind="sliderValue: {value:[minPrice, maxPrice]}", data-slider-tooltip="hide")
-                        div.panel
-                           span.label.label-default.pull-left(data-bind="text: minPrice") 
-                           span.label.label-default.pull-right(data-bind="text: maxPrice")
-                              | High 
+                        div.panel.row
+                           .col.pull-left.label.label-primary
+                              i.fa.fa-inr &nbsp;
+                              span(data-bind="text: minPrice") 
+                           .col.pull-right.label.label-primary
+                              i.fa.fa-inr &nbsp;
+                              span(data-bind="text: maxPrice")
+
                .panel.panel-default
                   #headingTwo.panel-heading(role="tab")
                      h4.panel-title
@@ -37,8 +41,8 @@ block main_content
                      .panel-body
                         input.slider.form-control(id="time", type="text", data-bind="sliderValue: {value: [minDepartureTime, maxDepartureTime]}", data-slider-tooltip="hide")
                         div.panel
-                           span.label.label-default.pull-left(data-bind="text: moment(minDepartureTime()).format('HH:mm')")
-                           span.label.label-default.pull-right(data-bind="text: moment(maxDepartureTime()).format('HH:mm')")
+                           span.label.label-primary.pull-left(data-bind="text: moment(minDepartureTime()).format('HH:mm')")
+                           span.label.label-primary.pull-right(data-bind="text: moment(maxDepartureTime()).format('HH:mm')")
                               | High
                .panel.panel-default
                   #headingFour.panel-heading(role="tab")
@@ -49,16 +53,33 @@ block main_content
                      .panel-body
                         input(id="duration", data-slider-id="durationSlider", type="text", data-bind="sliderValue: {value: [minDuration, maxDuration]}", data-slider-tooltip="hide")
                         div.panel
-                           span.label.label-default.pull-left(data-bind="text: Math.floor(moment.duration(minDuration(), 'milliseconds').asMinutes()) + ' Minutes'")
-                           span.label.label-default.pull-right(data-bind="text: Math.floor(moment.duration(maxDuration(), 'milliseconds').asMinutes()) + ' Minutes'")
+                           span.label.label-primary.pull-left(data-bind="text: Math.floor(moment.duration(minDuration(), 'milliseconds').asMinutes()) + ' Minutes'")
+                           span.label.label-primary.pull-right(data-bind="text: Math.floor(moment.duration(maxDuration(), 'milliseconds').asMinutes()) + ' Minutes'")
 
                    
                //end of panel default 1
             //end of accordion panel
             //input(id="sld1", type="text")
          //end of sidebar div 
-         div(class="col-md-9") 
-            h2 Main Content
+         .col-md-9
+            .table-responsive
+               table.table
+                  thead
+                     tr
+                        th() Airline
+                        th() Departure
+                        th() Arrival
+                        th() Duration
+                        th() Price
+                  tbody(data-bind="foreach: flightsData")
+                     tr
+                        td 
+                           //span(data-bind="text: airlineCode")
+                           img(data-bind="attr: {src: '/custom-ui/images/' + airlineCode + '.png'}")
+                        td() Data
+                        td() Data
+                        td() Data
+                        td() Data
       //end of row div        
 
 block external_javascript
