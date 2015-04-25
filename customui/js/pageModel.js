@@ -30,6 +30,24 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
 
    self.airlineArray = ko.observableArray(checkMap(airlineMap));
 
+   // - setting filters for displayed data based on
+   //  - price range
+   //  - flight duration range
+   //  - flight departure time range
+   self.filters = [
+      { 
+         title: "price", 
+         filter: function(flightData) {
+            return (parseInt(flightData.price) >= self.minPrice() 
+                    && parseInt(flightData.price) <= self.maxPrice());
+         }
+      }
+   ];
+
+   self.filteredFlightData = ko.computed(function() {
+      return ko.utils.arrayFilter(self.flightsData, self.filters[0].filter);
+   });
+
 };
 
 

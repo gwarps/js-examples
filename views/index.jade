@@ -71,7 +71,7 @@ block main_content
                         th() Arrival
                         th() Duration
                         th() Price
-                  tbody(data-bind="foreach: flightsData")
+                  tbody(data-bind="foreach: filteredFlightData")
                      tr
                         td 
                            div
@@ -80,10 +80,16 @@ block main_content
                               div
                                  span.label.label.label-flight(data-bind="text: airlineMap[airlineCode]")
                            //end of image div
-                        td() Data
-                        td() Data
-                        td() Data
-                        td() Data
+                        td
+                           span(data-bind="text: moment(parseInt(takeoffTime)).format('hh:mm a')")
+                        td
+                           span(data-bind="text: moment(parseInt(landingTime)).format('hh:mm a')")
+                        td
+                           span(data-bind="text: moment.duration(duration, 'milliseconds').hours() + 'h ' + (moment.duration(duration, 'milliseconds').minutes() ? moment.duration(duration, 'milliseconds').minutes() + 'm' : '')")
+                        td 
+                           strong
+                              i.fa.fa-inr &nbsp;
+                              span(data-bind="text: price")
       //end of row div        
 
 block external_javascript
