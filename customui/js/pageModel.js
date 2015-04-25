@@ -48,6 +48,13 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
             return (parseInt(flightData.takeoffTime) >= self.minDepartureTime()
                     && parseInt(flightData.takeoffTime) <= self.maxDepartureTime());
          }
+      },
+      {
+         title: "duration",
+         filter: function(flightData) {
+            return (parseInt(flightData.duration) >= self.minDuration()
+                    && parseInt(flightData.duration) <= self.maxDuration());
+         }
       }
 
    ];
@@ -58,7 +65,8 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
       //return ko.utils.arrayFilter(ko.utils.arrayFilter(self.flightsData, self.filters[0].filter),
       //                            self.filters[1].filter);
       return self.flightsData.filter(self.filters[0].filter)
-                             .filter(self.filters[1].filter);
+                             .filter(self.filters[1].filter)
+                             .filter(self.filters[2].filter);
    });
 
 
