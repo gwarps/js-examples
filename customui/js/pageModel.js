@@ -28,7 +28,12 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
       return o.duration;
    })));
 
-   self.airlineArray = ko.observableArray(checkMap(airlineMap));
+   // for displaying checkbox and keeping options track
+   // observale not required since not used
+   self.airlineArray = ko.observableArray(Object.keys(airlineMap));
+
+   // used for track of checked items and airline filter
+   self.airlineComputed = ko.observableArray(Object.keys(airlineMap));
 
    // - setting filters for displayed data based on
    //  - price range

@@ -27,11 +27,11 @@ block main_content
                         a(data-toggle="collapse", href="#collapseTwo", aria-expanded="true", aria-controls="collapseTwo")
                            | Airlines
                   #collapseTwo.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingTwo")
-                     .panel-body(data-bind="foreach: airlineArray")
+                     .panel-body(data-bind="foreach: airlineArray, visible: true")
                         .checkbox
                            label
-                              input(type="checkbox", value="", data-bind="checked: airlineChecked, data-airlineCode: airlineCode")
-                              span(data-bind="text: airlineMap[airlineCode]")
+                              input(type="checkbox" data-bind="attr: {value: $data}, checked: $parent.airlineComputed")
+                              span(data-bind="text: airlineMap[$data]")
                .panel.panel-default
                   #headingThree.panel-heading(role="tab")
                      h4.panel-title
