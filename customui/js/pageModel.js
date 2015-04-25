@@ -41,11 +41,20 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
             return (parseInt(flightData.price) >= self.minPrice() 
                     && parseInt(flightData.price) <= self.maxPrice());
          }
+      },
+      { 
+         title: "departure",
+         filter: function(flightData) {
+            return (parseInt(flightData.takeoffTime) >= self.minDepartureTime()
+                    && parseInt(flightData.takeoffTime) <= self.maxDepartureTime());
+         }
       }
+
    ];
 
    self.filteredFlightData = ko.computed(function() {
-      return ko.utils.arrayFilter(self.flightsData, self.filters[0].filter);
+      return ko.utils.arrayFilter(ko.utils.arrayFilter(self.flightsData, self.filters[0].filter),
+                                  self.filters[1].filter);
    });
 
 };
