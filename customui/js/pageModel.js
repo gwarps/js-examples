@@ -39,6 +39,7 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
    //  - price range
    //  - flight duration range
    //  - flight departure time range
+   //  - selected airlines
    self.filters = [
       { 
          title: "price", 
@@ -60,6 +61,12 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
             return (parseInt(flightData.duration) >= self.minDuration()
                     && parseInt(flightData.duration) <= self.maxDuration());
          }
+      },
+      {
+         title: "airline",
+         filter: function(flightData) {
+            return ($.inArray(flightData.airlineCode, self.airlineComputed()) > -1);
+         }
       }
 
    ];
@@ -71,7 +78,8 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
       //                            self.filters[1].filter);
       return self.flightsData.filter(self.filters[0].filter)
                              .filter(self.filters[1].filter)
-                             .filter(self.filters[2].filter);
+                             .filter(self.filters[2].filter) 
+                             .filter(self.filters[3].filter);
    });
 
 
