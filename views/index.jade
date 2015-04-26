@@ -12,7 +12,7 @@ block main_content
                            | Price
                   #collapseOne.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingOne")
                      .panel-body.text-center
-                        input.slider.form-control(id="price", type="text", data-bind="sliderValue: {value:[minPrice, maxPrice]}", data-slider-tooltip="hide")
+                        input.slider.form-control(id="price", type="text", data-bind="sliderValue: {value:[minPrice, maxPrice]}", data-slider-tooltip="hide", style="width: 100%")
                         div.panel.row
                            .col.pull-left.label.label-primary
                               i.fa.fa-inr &nbsp;
@@ -39,7 +39,7 @@ block main_content
                            | Departure Time
                   #collapseThree.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingThree")
                      .panel-body.text-center
-                        input.slider.form-control(id="time", type="text", data-bind="sliderValue: {value: [minDepartureTime, maxDepartureTime]}", data-slider-tooltip="hide")
+                        input.slider.form-control(id="time", type="text", data-bind="sliderValue: {value: [minDepartureTime, maxDepartureTime]}", data-slider-tooltip="hide", style="width:100%")
                         div.panel
                            span.label.label-primary.pull-left(data-bind="text: moment(minDepartureTime()).format('HH:mm')")
                            span.label.label-primary.pull-right(data-bind="text: moment(maxDepartureTime()).format('HH:mm')")
@@ -51,7 +51,7 @@ block main_content
                            | Duration
                   #collapseFour.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingFour")
                      .panel-body.text-center
-                        input(id="duration", data-slider-id="durationSlider", type="text", data-bind="sliderValue: {value: [minDuration, maxDuration]}", data-slider-tooltip="hide")
+                        input(id="duration", data-slider-id="durationSlider", type="text", data-bind="sliderValue: {value: [minDuration, maxDuration]}", data-slider-tooltip="hide", style="width:100%")
                         div.panel
                            span.label.label-primary.pull-left(data-bind="text: Math.floor(moment.duration(minDuration(), 'milliseconds').asMinutes()) + ' Minutes'")
                            span.label.label-primary.pull-right(data-bind="text: Math.floor(moment.duration(maxDuration(), 'milliseconds').asMinutes()) + ' Minutes'")
