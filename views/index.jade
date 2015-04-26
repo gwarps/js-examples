@@ -91,6 +91,9 @@ block main_content
                            div
                               div
                                  img(data-bind="attr: {src: '/custom-ui/images/' + airlineCode + '.png'}")
+                                 &nbsp;
+                                 &nbsp;
+                                 span.badge.hidden-md.hidden-lg(data-bind="text: moment.duration(duration, 'milliseconds').hours() + 'h ' + (moment.duration(duration, 'milliseconds').minutes() ? moment.duration(duration, 'milliseconds').minutes() + 'm' : '')")
                               div
                                  span.label.label.label-flight(data-bind="text: airlineMap[airlineCode]")
                            //end of image div
