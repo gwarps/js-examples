@@ -119,5 +119,6 @@ function appendDuration(flightsData) {
    flightsData.forEach(function(flight) {
       flight.duration = flight.landingTime - flight.takeoffTime;
       flight.price = parseInt(flight.price);
+      flight.classType = flight.class;
    });
 } 

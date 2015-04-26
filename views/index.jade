@@ -4,7 +4,7 @@ block main_content
    div(class="container")
       div(class="row")
          div(class="col-md-3")
-            #accordion.panel-group(role='tablist', aria-multiselectable='true')
+            #accordion.panel-group.hidden-sm.hidden-xs(role='tablist', aria-multiselectable='true')
                .panel.panel-default
                   #headingOne.panel-heading(role="tab")
                      h4.panel-title
@@ -96,9 +96,12 @@ block main_content
                         td
                            span(data-bind="text: moment.duration(duration, 'milliseconds').hours() + 'h ' + (moment.duration(duration, 'milliseconds').minutes() ? moment.duration(duration, 'milliseconds').minutes() + 'm' : '')")
                         td 
-                           strong
-                              i.fa.fa-inr &nbsp;
-                              span(data-bind="text: price")
+                           div
+                              strong
+                                 i.fa.fa-inr &nbsp;
+                                 span(data-bind="text: price")
+                           div
+                              span.label.label-default(data-bind="text: classType")
       //end of row div        
 
 block external_javascript
