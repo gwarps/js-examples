@@ -11,7 +11,7 @@ block main_content
                         a(data-toggle="collapse", href="#collapseOne", aria-expanded="true", aria-controls="collapseOne")
                            | Price
                   #collapseOne.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingOne")
-                     .panel-body()
+                     .panel-body.text-center
                         input.slider.form-control(id="price", type="text", data-bind="sliderValue: {value:[minPrice, maxPrice]}", data-slider-tooltip="hide")
                         div.panel.row
                            .col.pull-left.label.label-primary
@@ -38,7 +38,7 @@ block main_content
                         a(data-toggle="collapse", href="#collapseThree", aria-expanded="true", aria-controls="collapseThree")
                            | Departure Time
                   #collapseThree.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingThree")
-                     .panel-body
+                     .panel-body.text-center
                         input.slider.form-control(id="time", type="text", data-bind="sliderValue: {value: [minDepartureTime, maxDepartureTime]}", data-slider-tooltip="hide")
                         div.panel
                            span.label.label-primary.pull-left(data-bind="text: moment(minDepartureTime()).format('HH:mm')")
@@ -50,7 +50,7 @@ block main_content
                         a(data-toggle="collapse", href="#collapseFour", aria-expanded="true", aria-controls="collapseFour")
                            | Duration
                   #collapseFour.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingFour")
-                     .panel-body
+                     .panel-body.text-center
                         input(id="duration", data-slider-id="durationSlider", type="text", data-bind="sliderValue: {value: [minDuration, maxDuration]}", data-slider-tooltip="hide")
                         div.panel
                            span.label.label-primary.pull-left(data-bind="text: Math.floor(moment.duration(minDuration(), 'milliseconds').asMinutes()) + ' Minutes'")

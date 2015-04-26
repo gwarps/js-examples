@@ -2,3 +2,7 @@
    color: #58575a;
    background-color: none;
 }
+
+input.slider {
+   width: 100%;
+}
