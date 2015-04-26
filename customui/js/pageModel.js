@@ -67,6 +67,11 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
    // used for track of checked items and airline filter
    self.airlineComputed = ko.observableArray(Object.keys(airlineMap));
 
+   // for displaying checkbox, independent of check/uncheck
+   self.airlineClass = ['Business', 'Economy'];
+   // for track of checked items and airline filter
+   self.airlineClassSelected = ko.observableArray(['Business', 'Economy']);
+
    // - setting filters for displayed data based on
    //  - price range
    //  - flight duration range
@@ -87,7 +92,10 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
                 },
       airline: function(flightData) {
                     return ($.inArray(flightData.airlineCode, self.airlineComputed()) > -1);
-               }
+               },
+      airlineClass: function(flightData) {
+                       return($.inArray(flightData.class, self.airlineClassSelected()) > -1);
+                    }
 
    };
 
@@ -99,7 +107,7 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
      return self.flightsData().filter(self.filters.price)
                               .filter(self.filters.departure)
                               .filter(self.filters.duration)
-                              .filter(self.filters.airline)
+                              .filter(self.filters.airlineClass)
 
    });
 

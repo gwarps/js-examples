@@ -56,6 +56,19 @@ block main_content
                            span.label.label-primary.pull-left(data-bind="text: Math.floor(moment.duration(minDuration(), 'milliseconds').asMinutes()) + ' Minutes'")
                            span.label.label-primary.pull-right(data-bind="text: Math.floor(moment.duration(maxDuration(), 'milliseconds').asMinutes()) + ' Minutes'")
 
+               .panel.panel-default
+                  #headingFive.panel-heading(role="tab")
+                     h4.panel-title
+                        a(data-toggle="collapse", href="#collapseFive", aria-expanded="true", aria-controls="collapseFive")
+                           | Airline Class
+                  #collapseFive.panel-collapse.collapse.in(role="tabpanel", aria-labelledby="headingFive")
+                     .panel-body(data-bind="foreach: airlineClass")
+                        .checkbox
+                           label
+                              input(type="checkbox" data-bind="attr: {value: $data}, checked: $parent.airlineClassSelected")
+                              span(data-bind="text: $data")
+
+
                    
                //end of panel default 1
             //end of accordion panel
