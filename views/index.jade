@@ -79,7 +79,12 @@ block main_content
                table.table
                   thead
                      tr(data-bind="foreach: headers")
-                        th(data-bind="click: $parent.sort, text: title")
+                        th(data-bind="click: $parent.sort")
+                           span(data-bind="text: title")
+                           //span() &nbsp;
+                           //span(data-bind="if: display") 
+                            // i.fa.fa-sort-asc(data-bind="if: asc")
+                            // i.fa.fa-sort-desc(data-bind="if: !asc")
                   tbody(data-bind="foreach: filteredFlightData")
                      tr
                         td 

@@ -8,18 +8,22 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
    
    // table headers with sorting 
    self.headers = [
-      {title: 'Airline', sortProperty: 'airlineCode', asc: true},
-      {title: 'Departure', sortProperty: 'takeoffTime', asc: true},
-      {title: 'Arrival', sortProperty: 'landingTime', asc: true},
-      {title: 'Duration', sortProperty: 'duration', asc: true},
-      {title: 'Price', sortProperty: 'price', asc: true}
+      {title: 'Airline', sortProperty: 'airlineCode', asc: true, display: false},
+      {title: 'Departure', sortProperty: 'takeoffTime', asc: true, display: false},
+      {title: 'Arrival', sortProperty: 'landingTime', asc: true, display: false},
+      {title: 'Duration', sortProperty: 'duration', asc: true, display: false},
+      {title: 'Price', sortProperty: 'price', asc: true, display: false}
    ];
 
    self.activeSort = self.headers[4]; // setting default sort as price
    self.sort = function(header, event) {
+      header.display = true;
       if (self.activeSort === header) { // check if clicked for first time
          header.asc = !header.asc; // if so, reverse the sort direction
       } else {
+         if (self.activeSort) {
+            self.activeSort.display = false;
+         }
          self.activeSort = header // first click, stores it
       }
 
