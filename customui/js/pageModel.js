@@ -5,11 +5,13 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
    self.airlineMap = airlineMap;
    self.airportMap = airportMap;
    self.flightsData = ko.observableArray(flightsData);
+   
+   
    self.headers = [
       {title: 'Airline', sortProperty: 'airlineCode', asc: true},
       {title: 'Departure', sortProperty: 'takeoffTime', asc: true},
       {title: 'Arrival', sortProperty: 'landingTime', asc: true},
-      {title: 'Duration', sortProperty: 'departure', asc: true},
+      {title: 'Duration', sortProperty: 'duration', asc: true},
       {title: 'Price', sortProperty: 'price', asc: true}
    ];
 
@@ -21,23 +23,18 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
          self.activeSort = header // first click, stores it
       }
 
-      var sort_prop = self.activeSort.sortPropertyName;
+      var sort_prop = self.activeSort.sortProperty;
       var ascSort = function(a, b) {
          if (a[sort_prop] < b[sort_prop]) return -1;
          else if (a[sort_prop] > b[sort_prop]) return 1;
          else return 0;
       };
       var descSort = function(a, b) {
-         if (a[sort_prop] < b[sort_prop]) return 1;
-         else if (a[sort_prop] > b[sort_prop]) return -1;
-         else return 0;
+         return ascSort(b, a);
       };
    
       var sortDirection = self.activeSort.asc ? ascSort : descSort;
-      console.log("click");
-      self.filteredFlightData().sort(sortDirection);
-      //ko.utils.arrayFilter(self.filteredFlightData, sortDirection);
-
+      self.flightsData.sort(sortDirection);
    };
 
 
@@ -106,16 +103,19 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
 
    ];
 
-   self.filteredFlightData = ko.computed(function() {
+   //self.filteredFlightData = ko.computed(function() {
 
       // commented out in favor of method chaining solution
       //return ko.utils.arrayFilter(ko.utils.arrayFilter(self.flightsData, self.filters[0].filter),
       //                            self.filters[1].filter);
-      return self.flightsData;//filter(self.filters[0].filter)
+      //return self.flightsData();//filter(self.filters[0].filter)
                              //.filter(self.filters[1].filter)
                              //.filter(self.filters[2].filter) 
                              //.filter(self.filters[3].filter);
-   });
+      //return self.flightsData.filterByFunction(self.filters[0].filter);
+
+   //});
+   self.filteredFlightData = self.flightsdata;
 
 
 };
