@@ -79,7 +79,7 @@ block main_content
                table.table
                   thead
                      tr(data-bind="foreach: headers")
-                        th(data-bind="click: $parent.sort")
+                        th(data-bind="click: $parent.sort, css: {'hidden-sm hidden-xs': title === 'Duration' }")
                            span(data-bind="text: title")
                            //span() &nbsp;
                            //span(data-bind="if: display") 
@@ -98,7 +98,7 @@ block main_content
                            span(data-bind="text: moment(parseInt(takeoffTime)).format('hh:mm a')")
                         td
                            span(data-bind="text: moment(parseInt(landingTime)).format('hh:mm a')")
-                        td
+                        td.hidden-sm.hidden-xs
                            span(data-bind="text: moment.duration(duration, 'milliseconds').hours() + 'h ' + (moment.duration(duration, 'milliseconds').minutes() ? moment.duration(duration, 'milliseconds').minutes() + 'm' : '')")
                         td 
                            div
