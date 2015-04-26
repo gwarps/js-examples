@@ -65,13 +65,9 @@ block main_content
             .table-responsive
                table.table
                   thead
-                     tr
-                        th() Airline
-                        th() Departure
-                        th() Arrival
-                        th() Duration
-                        th() Price
-                  tbody(data-bind="foreach: filteredFlightData")
+                     tr(data-bind="foreach: headers")
+                        th(data-bind="click: $parent.sort, text: title")
+                  tbody(data-bind="foreach: flightsData")
                      tr
                         td 
                            div

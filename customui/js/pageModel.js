@@ -4,7 +4,42 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
    var self = this;
    self.airlineMap = airlineMap;
    self.airportMap = airportMap;
-   self.flightsData = flightsData;
+   self.flightsData = ko.observableArray(flightsData);
+   self.headers = [
+      {title: 'Airline', sortProperty: 'airlineCode', asc: true},
+      {title: 'Departure', sortProperty: 'takeoffTime', asc: true},
+      {title: 'Arrival', sortProperty: 'landingTime', asc: true},
+      {title: 'Duration', sortProperty: 'departure', asc: true},
+      {title: 'Price', sortProperty: 'price', asc: true}
+   ];
+
+   self.activeSort = self.headers[4]; // setting default sort as price
+   self.sort = function(header, event) {
+      if (self.activeSort === header) { // check if clicked for first time
+         header.asc = !header.asc; // if so, reverse the sort direction
+      } else {
+         self.activeSort = header // first click, stores it
+      }
+
+      var sort_prop = self.activeSort.sortPropertyName;
+      var ascSort = function(a, b) {
+         if (a[sort_prop] < b[sort_prop]) return -1;
+         else if (a[sort_prop] > b[sort_prop]) return 1;
+         else return 0;
+      };
+      var descSort = function(a, b) {
+         if (a[sort_prop] < b[sort_prop]) return 1;
+         else if (a[sort_prop] > b[sort_prop]) return -1;
+         else return 0;
+      };
+   
+      var sortDirection = self.activeSort.asc ? ascSort : descSort;
+      console.log("click");
+      self.filteredFlightData().sort(sortDirection);
+      //ko.utils.arrayFilter(self.filteredFlightData, sortDirection);
+
+   };
+
 
    self.minPrice = ko.observable(Math.min.apply(Math, flightsData.map(function(o) {
       return o.price;
@@ -76,10 +111,10 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
       // commented out in favor of method chaining solution
       //return ko.utils.arrayFilter(ko.utils.arrayFilter(self.flightsData, self.filters[0].filter),
       //                            self.filters[1].filter);
-      return self.flightsData.filter(self.filters[0].filter)
-                             .filter(self.filters[1].filter)
-                             .filter(self.filters[2].filter) 
-                             .filter(self.filters[3].filter);
+      return self.flightsData;//filter(self.filters[0].filter)
+                             //.filter(self.filters[1].filter)
+                             //.filter(self.filters[2].filter) 
+                             //.filter(self.filters[3].filter);
    });
 
 
@@ -89,5 +124,6 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
 function appendDuration(flightsData) {
    flightsData.forEach(function(flight) {
       flight.duration = flight.landingTime - flight.takeoffTime;
+      flight.price = parseInt(flight.price);
    });
 } 
