@@ -6,7 +6,7 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
    self.airportMap = airportMap;
    self.flightsData = ko.observableArray(flightsData);
    
-   
+   // table headers with sorting 
    self.headers = [
       {title: 'Airline', sortProperty: 'airlineCode', asc: true},
       {title: 'Departure', sortProperty: 'takeoffTime', asc: true},
@@ -72,50 +72,36 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
    //  - flight duration range
    //  - flight departure time range
    //  - selected airlines
-   self.filters = [
-      { 
-         title: "price", 
-         filter: function(flightData) {
-            return (parseInt(flightData.price) >= self.minPrice() 
+   self.filters = {
+      price: function(flightData) {
+                  return (parseInt(flightData.price) >= self.minPrice() 
                     && parseInt(flightData.price) <= self.maxPrice());
-         }
-      },
-      { 
-         title: "departure",
-         filter: function(flightData) {
-            return (parseInt(flightData.takeoffTime) >= self.minDepartureTime()
-                    && parseInt(flightData.takeoffTime) <= self.maxDepartureTime());
-         }
-      },
-      {
-         title: "duration",
-         filter: function(flightData) {
-            return (parseInt(flightData.duration) >= self.minDuration()
-                    && parseInt(flightData.duration) <= self.maxDuration());
-         }
-      },
-      {
-         title: "airline",
-         filter: function(flightData) {
-            return ($.inArray(flightData.airlineCode, self.airlineComputed()) > -1);
-         }
-      }
+             },
+      departure: function(flightData) {
+                      return (parseInt(flightData.takeoffTime) >= self.minDepartureTime()
+                        && parseInt(flightData.takeoffTime) <= self.maxDepartureTime());
+                 },
+      duration: function(flightData) {
+                     return (parseInt(flightData.duration) >= self.minDuration()
+                        && parseInt(flightData.duration) <= self.maxDuration());
+                },
+      airline: function(flightData) {
+                    return ($.inArray(flightData.airlineCode, self.airlineComputed()) > -1);
+               }
 
-   ];
+   };
 
-   //self.filteredFlightData = ko.computed(function() {
+   self.filteredFlightData = ko.computed(function() {
 
       // commented out in favor of method chaining solution
       //return ko.utils.arrayFilter(ko.utils.arrayFilter(self.flightsData, self.filters[0].filter),
       //                            self.filters[1].filter);
-      //return self.flightsData();//filter(self.filters[0].filter)
-                             //.filter(self.filters[1].filter)
-                             //.filter(self.filters[2].filter) 
-                             //.filter(self.filters[3].filter);
-      //return self.flightsData.filterByFunction(self.filters[0].filter);
+     return self.flightsData().filter(self.filters.price)
+                              .filter(self.filters.departure)
+                              .filter(self.filters.duration)
+                              .filter(self.filters.airline)
 
-   //});
-   self.filteredFlightData = self.flightsdata;
+   });
 
 
 };

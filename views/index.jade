@@ -67,7 +67,7 @@ block main_content
                   thead
                      tr(data-bind="foreach: headers")
                         th(data-bind="click: $parent.sort, text: title")
-                  tbody(data-bind="foreach: flightsData")
+                  tbody(data-bind="foreach: filteredFlightData")
                      tr
                         td 
                            div
