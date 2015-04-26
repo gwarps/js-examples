@@ -3,3 +3,9 @@
    background-color: none;
 }
 
+.slider-selection {
+	background: #8283FF;
+}
+.slider-handle {
+	border-bottom-color: blue;
+}
