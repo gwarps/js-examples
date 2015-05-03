@@ -17,7 +17,7 @@ UI dependencies are not stored in the github repo. So they need to be installed 
 
 ### Steps
 * install "iojs-v1.7.x". Using nvm it can be done with this command:
-'''shell
+```shell
 nvm install iojs-v1.7.1
-'''
+```
 
