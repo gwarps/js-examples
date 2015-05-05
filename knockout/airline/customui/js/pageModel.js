@@ -111,6 +111,7 @@ var pageModel = function(airlineMap, airportMap, flightsData) {
      return self.flightsData().filter(self.filters.price)
                               .filter(self.filters.departure)
                               .filter(self.filters.duration)
+                              .filter(self.filters.airline)
                               .filter(self.filters.airlineClass)
 
    });
